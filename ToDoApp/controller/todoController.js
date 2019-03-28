@@ -1,5 +1,18 @@
 var bodyParser = require('body-parser')
+// var mongoose = require('mongoose')
 var urlencodeParser = bodyParser.urlencoded({ extended: false })
+// connect remote database======================
+// mongoose.connect('mongodb+srv://root:root@cluster0-g1e1r.azure.mongodb.net/test?retryWrites=true')
+//create schema=================================
+// var todoSchema = new mongoose.Schema({
+//     item: String
+// })
+// save data to database========================
+// var Todo = mongoose.model('Todo', todoSchema)
+// Todo({ item: 'hello world' }).save(function (err, data) {
+//     if (err) throw err;
+//     console.log('item saved')
+// })
 var data = [
     { item: 'welcome to be here' },
     { item: 'have you finished your work today' },
