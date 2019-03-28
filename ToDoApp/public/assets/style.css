@@ -4,10 +4,12 @@
 body{
     background-color: #edf0f1;
     padding: 80px 0 0 0;
+    
 }
 /* =====================header===================== */
 header{
     width: 100%;
+    min-width: 320px;
     height: 80px;
     position: fixed;
     padding: 15px;
@@ -75,6 +77,7 @@ header button svg .fill{
 /* ===================container===================== */
 .container{
     width: 100%;
+    min-width: 320px;
     padding: 15px; 
     float: left;
 }
