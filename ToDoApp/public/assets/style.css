@@ -1,0 +1,185 @@
+.noFill{
+    fill: none;
+}
+body{
+    background-color: #edf0f1;
+    padding: 80px 0 0 0;
+}
+/* =====================header===================== */
+header{
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    padding: 15px;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+    background-color: #25b99a;
+    -webkit-box-shadow: 0px 2px 4px raba(44, 62, 80, 0.15);
+    -moz-box-shadow: 0px 2px 4px raba(44, 62, 80, 0.15);
+    box-shadow: 0px 2px 4px raba(44, 62, 80, 0.15);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+header input{
+    width: 100%;
+    height: 50px;
+    float: left;
+    color: #fff;
+    font-size: 15px; 
+    font-weight: 400;
+    text-indent: 18px;
+    padding: 0 60px 0 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: 0px;
+    box-shadow: none;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+}
+header button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 2;
+    background-color: #fff;
+    border: 0px;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+header button svg{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -8px 0 0 -8px;
+
+}
+header button svg .fill{
+    fill: #25b99a;
+}
+/* ===================container===================== */
+.container{
+    width: 100%;
+    padding: 15px; 
+    float: left;
+}
+ul.todo{
+    width: 100%;
+    float: left;
+}
+ul.todo li{
+    width: 100%;
+    min-height: 50px;
+    float: left;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    line-height: 22px;
+    background-color: #fff;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0px 1px 2px rgba(44, 62, 80, 0.1);
+    margin: 0 0 10px 0;
+    padding: 14px 100px 14px 14px;
+
+}
+ul.todo li:last-of-type{
+    margin: 0;
+}
+ul.todo li .buttons{
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+ul.todo li .buttons button{
+    width: 50px;
+    height: 50px;
+    float: left;
+    background: none;
+    position: relative;
+    border: 0px;
+    box-shadow: none;  
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+ul.todo li .buttons button:last-of-type::before{
+    content: '';
+    width: 1px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    background-color: #edf0f1;
+}
+ul.todo li .buttons button svg{
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -11px 0 0 -11px;
+}
+ul.todo li .buttons button.complete svg{
+    border-radius: 11px;
+    border: 1.5px solid #25b99a;
+    /* transition: background 0.2s ease; */
+}
+ul.todo li .buttons button.delete svg .fill{
+    fill: #c0cecb;
+    
+}
+ul.todo li .buttons button.delete:hover svg .fill{
+    fill: #e85656;
+}
+ul.todo li .buttons button svg fill{
+    transition: fill 0.2s ease;
+}
+ul.todo li .buttons button.complete svg .fill{
+    fill: #25b99a;
+}
+ul.todo:not(#completed) li .buttons button.complete:hover svg .fill{
+    fill: #fff;
+}
+ul.todo:not(#completed) li .buttons button.complete:hover svg{
+    background-color: #25b99a;
+}
+ul.todo#completed li .buttons button.complete svg .fill{
+    fill: #fff;
+}
+ul.todo#completed li .buttons button.complete svg{
+    background-color: #25b99a;
+}
+ul.todo#completed{
+    position: relative;
+    padding: 60px 0 0 0;
+}
+ul.todo#completed:not(empty)::before{
+    content: '';
+    height: 1px;
+    width: 50%;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    background-color: #d8e5e0;
+    margin: 0 0 0 -25%;
+}
