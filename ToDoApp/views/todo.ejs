@@ -105,28 +105,18 @@
             });
         });
         $('#todo').click(function(e){
-            // console.log(e)
             var li = $(e.target).parent().parent().parent()
-            // li.parent().attr('id', 'completed')
-            // console.log(li)
-            // var oUl = document.createElement('ul');
-            // $('.container').append(oUl);
-            // console.log($('#completed').length)
-            //     console.log(oUl)
             if($('#completed').length == 0){
                 var oUl = document.createElement('ul');
-                oUl.setAttribute('class','todo')
-                oUl.setAttribute('id', 'completed')
-                console.log(oUl)
-                // console.log($('oUl'))
-                // $('').attr({'id' :'completed', 'class':'todo'});
+                // jsDOM -> $DOM   DONNOT use quatation marks like 'oUl'
+                $(oUl).attr({'id': 'completed', 'class':'todo'})
+                // oUl.setAttribute('class','todo')
+                // oUl.setAttribute('id', 'completed')
                 $('.container').append(oUl);
                 $('#completed').append(li)
             }else{
                 $('#completed').append(li)
             }
-            // e.currentTarget)
-        //    $(e.currentTarget).attr('id','completed')
         })
         
     });
