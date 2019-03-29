@@ -13,12 +13,40 @@ var urlencodeParser = bodyParser.urlencoded({ extended: false })
 //     if (err) throw err;
 //     console.log('item saved')
 // })
-var data = [
-    { item: 'welcome to be here' },
-    { item: 'have you finished your work today' },
-    { item: 'good to see you here' },
-    { item: 'you readlly did a great job today' }
-]
+// var data = {
+//     todo: [
+//         {
+//             content: 'welcome to be here',
+//             randNum: '123'
+//         },
+//         {
+//             content: 'have you finished your work today',
+//             randNum: ''
+//         },
+//         {
+//             content: 'good to see you here',
+//             randNum: ''
+//         },
+//         {
+//             content: 'you readlly did a great job today',
+//             randNum: ''
+//         }
+//     ],
+//     done: [
+//         {
+//             content: 'wow, quite a nice today',
+//             randNum: ''
+//         },
+//         {
+//             content: 'this is a testing line',
+//             randNum: ''
+//         }
+//     ]
+// }
+var data = {
+    todo: [],
+    done: []
+}
 
 module.exports = function (app) {
     //get data
@@ -26,15 +54,30 @@ module.exports = function (app) {
         res.render('todo', { todos: data })
     })
     //transit data
-    app.post('/todo', urlencodeParser, (req, res) => {
-        data.push(req.body);
+    app.post('/todo:marker', urlencodeParser, (req, res) => {
+        //use a marker to 
+        var marker = req.params.marker;
+        if (marker === 'todo') {
+            data.todo.push(req.body);
+        }
+        if (marker === 'completed') {
+            var index = data.todo.findIndex(function (item) {
+                return (item.content + item.randNum) == (req.body.content + req.body.randNum);
+            })
+            data.todo.splice(index, 1);
+            data.done.push(req.body);
+        }
+        res.json(data);
     })
     //delete data
     app.delete('/todo:context', (req, res) => {
-        // console.log(req.params.context)
-        data = data.filter(function (item) {
-            return item.item !== req.params.context;
+        data.todo = data.todo.filter(function (item) {
+            return (item.content + item.randNum) !== req.params.context;
+        });
+        data.done = data.done.filter(function (item) {
+            return (item.content + item.randNum) !== req.params.context;
         });
         res.json(data);
+        // console.log(data)
     })
 }
