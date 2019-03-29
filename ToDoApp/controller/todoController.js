@@ -1,6 +1,6 @@
 var bodyParser = require('body-parser')
-// var mongoose = require('mongoose')
 var urlencodeParser = bodyParser.urlencoded({ extended: false })
+// var mongoose = require('mongoose')
 // connect remote database======================
 // mongoose.connect('mongodb+srv://root:root@cluster0-g1e1r.azure.mongodb.net/test?retryWrites=true')
 //create schema=================================
@@ -13,36 +13,6 @@ var urlencodeParser = bodyParser.urlencoded({ extended: false })
 //     if (err) throw err;
 //     console.log('item saved')
 // })
-// var data = {
-//     todo: [
-//         {
-//             content: 'welcome to be here',
-//             randNum: '123'
-//         },
-//         {
-//             content: 'have you finished your work today',
-//             randNum: ''
-//         },
-//         {
-//             content: 'good to see you here',
-//             randNum: ''
-//         },
-//         {
-//             content: 'you readlly did a great job today',
-//             randNum: ''
-//         }
-//     ],
-//     done: [
-//         {
-//             content: 'wow, quite a nice today',
-//             randNum: ''
-//         },
-//         {
-//             content: 'this is a testing line',
-//             randNum: ''
-//         }
-//     ]
-// }
 var data = {
     todo: [],
     done: []
@@ -58,6 +28,10 @@ module.exports = function (app) {
         //use a marker to 
         var marker = req.params.marker;
         if (marker === 'todo') {
+            var index = data.done.findIndex(function (item) {
+                return (item.content + item.randNum) == (req.body.content + req.body.randNum);
+            })
+            data.done.splice(index, 1);
             data.todo.push(req.body);
         }
         if (marker === 'completed') {
@@ -70,14 +44,15 @@ module.exports = function (app) {
         res.json(data);
     })
     //delete data
+    //NOTE: if content contains english mark?, # or %, it can not be deleted directly
     app.delete('/todo:context', (req, res) => {
+        var context = req.params.context;
         data.todo = data.todo.filter(function (item) {
-            return (item.content + item.randNum) !== req.params.context;
+            return (item.content + item.randNum) !== context;
         });
         data.done = data.done.filter(function (item) {
-            return (item.content + item.randNum) !== req.params.context;
+            return (item.content + item.randNum) !== context;
         });
         res.json(data);
-        // console.log(data)
     })
 }
