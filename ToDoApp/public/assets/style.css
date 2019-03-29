@@ -4,7 +4,6 @@
 body{
     background-color: #edf0f1;
     padding: 80px 0 0 0;
-    
 }
 /* =====================header===================== */
 header{
@@ -43,7 +42,6 @@ header input{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-
 }
 header button{
     width: 50px;
@@ -69,7 +67,6 @@ header button svg{
     top: 50%;
     left: 50%;
     margin: -8px 0 0 -8px;
-
 }
 header button svg .fill{
     fill: #25b99a;
@@ -99,7 +96,6 @@ ul.todo li{
     box-shadow: 0px 1px 2px rgba(44, 62, 80, 0.1);
     margin: 0 0 10px 0;
     padding: 14px 100px 14px 14px;
-
 }
 ul.todo li:last-of-type{
     margin: 0;
@@ -145,38 +141,37 @@ ul.todo li .buttons button svg{
 ul.todo li .buttons button.complete svg{
     border-radius: 11px;
     border: 1.5px solid #25b99a;
-    /* transition: background 0.2s ease; */
+    transition: background-color 0.2s ease;
 }
 ul.todo li .buttons button.delete svg .fill{
     fill: #c0cecb;
-    
 }
 ul.todo li .buttons button.delete:hover svg .fill{
     fill: #e85656;
 }
-ul.todo li .buttons button svg fill{
+ul.todo li .buttons button svg .fill{
     transition: fill 0.2s ease;
 }
-ul.todo li .buttons button.complete svg .fill{
+ul.todo li .buttons button.complete svg .fill,
+ul#completed li .buttons button.complete:hover svg .fill{
     fill: #25b99a;
 }
-ul.todo:not(#completed) li .buttons button.complete:hover svg .fill{
+ul#completed li .buttons button.complete svg .fill,
+ul#todo li .buttons button.complete:hover svg .fill{
     fill: #fff;
 }
-ul.todo:not(#completed) li .buttons button.complete:hover svg{
+ul#completed li .buttons button.complete svg,
+ul#todo li .buttons button.complete:hover svg{
     background-color: #25b99a;
 }
-ul.todo#completed li .buttons button.complete svg .fill{
-    fill: #fff;
+ul#completed li .buttons button.complete:hover svg{
+    background-color: #fff;
 }
-ul.todo#completed li .buttons button.complete svg{
-    background-color: #25b99a;
-}
-ul.todo#completed{
+ul#completed{
     position: relative;
     padding: 60px 0 0 0;
 }
-ul.todo#completed:not(empty)::before{
+ul#completed:not(empty)::before{
     content: '';
     height: 1px;
     width: 50%;
@@ -187,10 +182,10 @@ ul.todo#completed:not(empty)::before{
     opacity: 0.3;
     margin: 0 0 0 -25%;
 }
-ul.todo#completed:empty::before{
+ul#completed:empty::before{
     display: none;
 }
-ul.todo#todo:empty::after{
+ul#todo:empty::after{
     content: 'Todo List Clean';
     font-size: 16px;
     display: block;

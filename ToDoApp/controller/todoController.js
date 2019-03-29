@@ -27,19 +27,26 @@ module.exports = function (app) {
     app.post('/todo:marker', urlencodeParser, (req, res) => {
         //use a marker to 
         var marker = req.params.marker;
-        if (marker === 'todo') {
-            var index = data.done.findIndex(function (item) {
-                return (item.content + item.randNum) == (req.body.content + req.body.randNum);
-            })
-            data.done.splice(index, 1);
-            data.todo.push(req.body);
-        }
-        if (marker === 'completed') {
-            var index = data.todo.findIndex(function (item) {
-                return (item.content + item.randNum) == (req.body.content + req.body.randNum);
-            })
-            data.todo.splice(index, 1);
-            data.done.push(req.body);
+        switch (marker) {
+            case 'todo-add':
+                data.todo.push(req.body);
+                break;
+            case 'todo-recover':
+                var index = data.done.findIndex(function (item) {
+                    return (item.content + item.randNum) == (req.body.content + req.body.randNum);
+                })
+                data.done.splice(index, 1);
+                data.todo.push(req.body);
+                break;
+            case 'completed':
+                var index = data.todo.findIndex(function (item) {
+                    return (item.content + item.randNum) == (req.body.content + req.body.randNum);
+                })
+                data.todo.splice(index, 1);
+                data.done.push(req.body);
+                break;
+            default:
+                console.log('Oops, something wrong.');
         }
         res.json(data);
     })

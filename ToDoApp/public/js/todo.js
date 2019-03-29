@@ -5,19 +5,19 @@ $(document).ready(function () {
         //get value from input frame
         var content = $('form input');
         var randNum = Math.random().toString(16).slice(2, 12);
-        var todo = {
+        var data = {
             content: content.val(),
             randNum: randNum
         };
-        if (todo.content == '') {
+        if (data.content == '') {
             alert('Sorry, but you have type something first!');
             return;
         }
         //send data request
         $.ajax({
             type: 'POST',
-            url: '/todo' + 'todo',
-            data: todo,
+            url: '/todo' + 'todo-add',
+            data: data,
             success: function () {
                 // alert("Congras, your task has been added!")
                 // console.log(data);
@@ -43,7 +43,7 @@ $(document).ready(function () {
         listEmpty();
     });
     $('#completed button.complete').click(function () {
-        statusCheck($(this), 'todo');
+        statusCheck($(this), 'todo-recover');
         listEmpty();
     });
 });
