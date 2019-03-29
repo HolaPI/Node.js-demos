@@ -85,7 +85,7 @@ ul.todo{
 ul.todo li{
     width: 100%;
     min-height: 50px;
-    float: left;
+    float: right;
     font-size: 14px;
     font-weight: 500;
     color: #444;

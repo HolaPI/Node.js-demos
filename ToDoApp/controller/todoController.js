@@ -17,7 +17,6 @@ var data = {
     todo: [],
     done: []
 }
-
 module.exports = function (app) {
     //get data
     app.get('/todo', (req, res) => {
